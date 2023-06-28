@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt201umsn76gq"]
+
+[ext_resource type="Texture2D" uid="uid://bi71ocoiyb6ip" path="res://kenney_pixel-platformer/Tilemap/tiles_packed.png" id="1_t7jde"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1y8kj"]
+size = Vector2(18, 8)
+
+[node name="espinho" type="Area2D"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1y8kj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_t7jde")
+region_enabled = true
+region_rect = Rect2(144, 63, 18, 9)
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

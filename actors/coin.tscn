@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://wal1mnd2rcj4"]
+
+[ext_resource type="Texture2D" uid="uid://btefg8etq4oeh" path="res://kenney_pixel-platformer/Tiles/tile_0151.png" id="1_67765"]
+[ext_resource type="Script" path="res://scripts/coin.gd" id="1_wgbo0"]
+[ext_resource type="Texture2D" uid="uid://bds30u481odiw" path="res://kenney_pixel-platformer/Tiles/tile_0152.png" id="2_0454w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4l284"]
+radius = 9.05539
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0xdg"]
+atlas = ExtResource("1_67765")
+region = Rect2(0, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75h2p"]
+atlas = ExtResource("2_0454w")
+region = Rect2(0, 0, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vpf18"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0xdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75h2p")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="coin" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_wgbo0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4l284")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vpf18")
+animation = &"idle"
+autoplay = "idle"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
